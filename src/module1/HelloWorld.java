@@ -69,14 +69,17 @@ public class HelloWorld extends PApplet
 
 		// The next line zooms in and centers the map at 
 	    // 32.9 (latitude) and -117.2 (longitude)
-	    map1.zoomAndPanTo(zoomLevel, new Location(32.9f, -117.2f));
+	    map1.zoomAndPanTo(zoomLevel, new Location(32.9f, -117.0f));
 		
 		// This line makes the map interactive
 		MapUtils.createDefaultEventDispatcher(this, map1);
 		
 		// TODO: Add code here that creates map2 
 		// Then you'll modify draw() below
-
+		map2 = new UnfoldingMap(this, 420, 50, 350, 500, provider);
+		// the coordinate of Wuhan is (30.57, 114.31)
+		map2.zoomAndPanTo (zoomLevel, new Location(30.57f, 114.31f));
+		MapUtils.createDefaultEventDispatcher(this, map2);
 	}
 
 	/** Draw the Applet window.  */
@@ -84,6 +87,7 @@ public class HelloWorld extends PApplet
 		// So far we only draw map1...
 		// TODO: Add code so that both maps are displayed
 		map1.draw();
+		map2.draw();
 	}
 
 	
