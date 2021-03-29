@@ -165,6 +165,7 @@ public class EarthquakeCityMap extends PApplet {
 		rect(20, 50, 160, 250);
 		// key word
 		textSize(14);
+		// textAlign(CENTER, LEFT);
 		fill(10);
 		text("Earthquake Key", 40, 80);
 		// red ellipse + words
