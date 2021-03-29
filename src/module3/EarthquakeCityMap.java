@@ -40,6 +40,16 @@ public class EarthquakeCityMap extends PApplet {
 	// Less than this threshold is a minor earthquake
 	public static final float THRESHOLD_LIGHT = 4;
 
+	// colors
+	private int red;
+	private int yellow;
+	private int blue;
+
+	// sizes of markers
+	private static final float large = 15;
+	private static final float medium = 9;
+	private static final float small = 5;
+
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
 	
@@ -65,7 +75,12 @@ public class EarthquakeCityMap extends PApplet {
 		
 	    map.zoomToLevel(2);
 	    MapUtils.createDefaultEventDispatcher(this, map);	
-			
+
+	    // set colors
+		red = color(255, 0, 0);
+		yellow = color(255, 255, 0);
+	    blue = color(0, 0, 255);
+
 	    // The List you will populate with new SimplePointMarkers
 	    List<Marker> markers = new ArrayList<Marker>();
 
@@ -77,7 +92,9 @@ public class EarthquakeCityMap extends PApplet {
 	    // to create a new SimplePointMarker for each PointFeature in 
 	    // earthquakes.  Then add each new SimplePointMarker to the 
 	    // List markers (so that it will be added to the map in the line below)
-	    
+	    for (PointFeature pf: earthquakes) {
+	    	markers.add(createMarker(pf));
+		}
 	    
 	    // Add the markers to the map so that they are displayed
 	    map.addMarkers(markers);
@@ -107,7 +124,7 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// Here is an example of how to use Processing's color method to generate 
 	    // an int that represents the color yellow.  
-	    int yellow = color(255, 255, 0);
+	    // int yellow = color(255, 255, 0);
 		
 		// TODO (Step 4): Add code below to style the marker's size and color 
 	    // according to the magnitude of the earthquake.  
@@ -116,8 +133,17 @@ public class EarthquakeCityMap extends PApplet {
 	    // Rather than comparing the magnitude to a number directly, compare 
 	    // the magnitude to these variables (and change their value in the code 
 	    // above if you want to change what you mean by "moderate" and "light")
-	    
-	    
+	    if (Float.compare(mag, THRESHOLD_MODERATE) >= 0) {
+	    	marker.setColor(red);
+	    	marker.setRadius(large);
+		} else if (Float.compare(mag, THRESHOLD_LIGHT) >= 0) {
+			marker.setColor(yellow);
+			marker.setRadius(medium);
+		} else {
+			marker.setColor(blue);
+			marker.setRadius(small);
+		}
+
 	    // Finally return the marker
 	    return marker;
 	}
@@ -134,6 +160,28 @@ public class EarthquakeCityMap extends PApplet {
 	private void addKey() 
 	{	
 		// Remember you can use Processing's graphics methods here
-	
+		// the rectangle panel
+		fill(255, 243, 230);
+		rect(20, 50, 160, 250);
+		// key word
+		textSize(14);
+		fill(10);
+		text("Earthquake Key", 40, 80);
+		// red ellipse + words
+		fill(red);
+		ellipse(40, 120, large, large);
+		fill(10);
+		textSize(12);
+		text("5.0+ Magnitude", 70, 120+large/2);
+		// yellow ellipse + words
+		fill(yellow);
+		ellipse(40, 150, medium, medium);
+		fill(10);
+		text("4.0+ Magnitude", 70, 150+medium/2);
+		// blue ellipse + words
+		fill(blue);
+		ellipse(40, 180, small, small);
+		fill(10);
+		text("Below 4.0", 70, 180+small/2);
 	}
 }
