@@ -147,10 +147,12 @@ public class EarthquakeCityMap extends PApplet {
 		triangle(55, 100, 50, 110, 60, 110);
 		fill(color(255, 255, 255));
 		ellipse(55, 130, EarthquakeMarker.large, EarthquakeMarker.large);
+		rect(55-EarthquakeMarker.large/2, 155-EarthquakeMarker.large/2, EarthquakeMarker.large, EarthquakeMarker.large);
 
 		fill(0, 0, 0);
 		text("City Marker", 75, 105);
 		text("Land Quake", 75, 130);
+		text("Ocean Quake", 75, 155);
 
 //		fill(color(255, 0, 0));
 //		ellipse(50, 125, 15, 15);
