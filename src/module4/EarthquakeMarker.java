@@ -25,8 +25,8 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// based on magnitude. 
 
 	// sizes of markers
-	protected static final float large = 20;
-	protected static final float medium = 10;
+	protected static final float large = 15;
+	protected static final float medium = 9;
 	protected static final float small = 5;
 	
 	/** Greater than or equal to this threshold is a moderate earthquake */

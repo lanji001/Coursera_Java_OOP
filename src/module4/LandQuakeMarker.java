@@ -34,14 +34,15 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		
 		// TODO: Implement this method
 		float magnitude = getMagnitude();
+		float radius;
 		if (Float.compare(magnitude, THRESHOLD_MODERATE) >= 0) {
-			setRadius(large);
+			radius = large;
 		} else if (Float.compare(magnitude, THRESHOLD_LIGHT) >= 0) {
-			setRadius(medium);
+			radius = medium;
 		} else {
-			setRadius(small);
+			radius = small;
 		}
-		pg.ellipse(x, y, getRadius(), getRadius());
+		pg.ellipse(x, y, radius, radius);
 	}
 	
 
