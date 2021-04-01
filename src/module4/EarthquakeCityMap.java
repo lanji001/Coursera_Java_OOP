@@ -1,7 +1,9 @@
 package module4;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
@@ -170,7 +172,9 @@ public class EarthquakeCityMap extends PApplet {
 		// If isInCountry ever returns true, isLand should return true.
 		for (Marker m : countryMarkers) {
 			// TODO: Finish this method using the helper method isInCountry
-			
+			if (isInCountry(earthquake, m)) {
+				return true;
+			}
 		}
 		
 		
@@ -197,7 +201,22 @@ public class EarthquakeCityMap extends PApplet {
 		//     	and (2) if it is on land, that its country property matches 
 		//      the name property of the country marker.   If so, increment
 		//      the country's counter.
-		
+
+		// Use HashMap instead of nested loops, to count the numbers of quakes
+		HashMap<String, Integer> quakeCount = new HashMap<>();
+		int numOceanQuake = 0;
+		for (Marker quakeMarker: quakeMarkers) {
+			if (quakeMarker instanceof LandQuakeMarker) {
+				String countryName = ((LandQuakeMarker)quakeMarker).getCountry();
+				quakeCount.put(countryName, quakeCount.getOrDefault(countryName, 0)+1);
+			} else {
+				++numOceanQuake;
+			}
+		}
+		for (Map.Entry<String, Integer> entry: quakeCount.entrySet()) {
+			System.out.println(entry.getKey() + ": " + entry.getValue());
+		}
+		System.out.println("OCEAN QUAKES: " + numOceanQuake);
 		// Here is some code you will find useful:
 		// 
 		//  * To get the name of a country from a country marker in variable cm, use:
