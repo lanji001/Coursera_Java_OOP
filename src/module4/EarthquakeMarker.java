@@ -23,8 +23,11 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// You will want to set this in the constructor, either
 	// using the thresholds below, or a continuous function
 	// based on magnitude. 
-  
-	
+
+	// sizes of markers
+	protected static final float large = 20;
+	protected static final float medium = 10;
+	protected static final float small = 5;
 	
 	/** Greater than or equal to this threshold is a moderate earthquake */
 	public static final float THRESHOLD_MODERATE = 5;

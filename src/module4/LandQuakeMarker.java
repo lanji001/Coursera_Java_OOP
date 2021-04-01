@@ -10,7 +10,7 @@ import processing.core.PGraphics;
  *
  */
 public class LandQuakeMarker extends EarthquakeMarker {
-	
+
 	
 	public LandQuakeMarker(PointFeature quake) {
 		
@@ -33,7 +33,15 @@ public class LandQuakeMarker extends EarthquakeMarker {
 		// and how it is set in the EarthquakeMarker constructor
 		
 		// TODO: Implement this method
-		
+		float magnitude = getMagnitude();
+		if (Float.compare(magnitude, THRESHOLD_MODERATE) >= 0) {
+			setRadius(large);
+		} else if (Float.compare(magnitude, THRESHOLD_LIGHT) >= 0) {
+			setRadius(medium);
+		} else {
+			setRadius(small);
+		}
+		pg.ellipse(x, y, getRadius(), getRadius());
 	}
 	
 
