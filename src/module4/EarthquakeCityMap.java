@@ -70,9 +70,11 @@ public class EarthquakeCityMap extends PApplet {
 		    earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
 		}
 		else {
-			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
+			// map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
+			// replace GoogleMapProvider() with GoogleSimplifiedProvider(), because the connection to the former mapProvider is time-out
+			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleSimplifiedProvider());
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
-		    //earthquakesURL = "2.5_week.atom";
+		    // earthquakesURL = "2.5_week.atom";
 		}
 		MapUtils.createDefaultEventDispatcher(this, map);
 		
@@ -155,6 +157,10 @@ public class EarthquakeCityMap extends PApplet {
 		ellipse(55, 235, EarthquakeMarker.medium, EarthquakeMarker.medium);
 		fill(color(255, 0, 0));
 		ellipse(55, 260, EarthquakeMarker.medium, EarthquakeMarker.medium);
+		fill(color(255, 255, 255));
+		ellipse(55, 285, EarthquakeMarker.medium, EarthquakeMarker.medium);
+		line(55-EarthquakeMarker.medium, 285-EarthquakeMarker.medium, 55+EarthquakeMarker.medium, 285+EarthquakeMarker.medium);
+		line(55-EarthquakeMarker.medium, 285+EarthquakeMarker.medium, 55+EarthquakeMarker.medium, 285-EarthquakeMarker.medium);
 
 		fill(0, 0, 0);
 		text("City Marker", 75, 105);
@@ -164,6 +170,7 @@ public class EarthquakeCityMap extends PApplet {
 		text("Shallow", 75, 210);
 		text("Intermediate", 75, 235);
 		text("Deep", 75, 260);
+		text("Past Day", 75, 285);
 
 //		fill(color(255, 0, 0));
 //		ellipse(50, 125, 15, 15);
